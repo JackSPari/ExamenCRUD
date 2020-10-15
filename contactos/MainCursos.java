@@ -23,16 +23,16 @@ public class MainCursos {
                 case 1:
                     System.out.println("Listado de cursos ");
                     for (Cursos d : data.list("")) {
-                        System.out.println(d.getId() + "\t" + d.getNombre() + "\t" + d.getDescrpcion() + "\t" + d.getCreditos());
+                        System.out.println(d.getId() + "\t" + d.getNombre() + "\t" + d.getDescrpcion() + "\t" + d.getClase() + "\t" + d.getCreditos());
                     }
                     break;
                 case 2:
                     System.out.println("Nuevo curso ");
-                    Cursos c = new Cursos();
+                    Cursos p = new Cursos();
                     System.out.print("nombre: ");
                     p.setNombre(input.nextLine());
                     System.out.print("creditos: ");
-                    p.setdescripcion(input.nextLine());
+                    p.setCreditos(input.nextLine());
 
                     System.out.print("creditos: ");
                     try {
@@ -61,7 +61,7 @@ public class MainCursos {
                             Cursos d = data.get(id);
                             if (d != null) {
                                 System.out.println("Id: " + d.getId());
-                                System.out.println("Name: " + d.getNombre());
+                                System.out.println("Nombre: " + d.getNombre());
                             } else {
                                 System.out.print("el curso no existe");
                             }

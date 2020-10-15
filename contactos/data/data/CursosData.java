@@ -20,6 +20,7 @@ public class CursosData {
             final PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(++i, d.getNombre());
             ps.setString(++i, d.getDescripcion());
+            ps.setString(++i, d.getClase());
             ps.setInt(++i, d.getCreditos());
             res = ps.executeUpdate();// 0 no o 1 si commit
             System.out.println("create.res=" + res);
@@ -37,9 +38,10 @@ public class CursosData {
             while (rs.next()) {
                 final Cursos p = new Cursos();
                 p.setId(rs.getInt("id"));
-                p.setName(rs.getString("nombre"));
-                p.setSex(rs.getString("comentarios"));
-                p.setAge(rs.getInt("creditos"));
+                p.setNombre(rs.getString("nombre"));
+                p.setComentarios(rs.getString("comentarios"));
+                p.setClase(rs.getString("clase"));
+                p.setCreditos(rs.getInt("creditos"));
                 lis2.add(p);
             }
         } catch (final Exception e) {
@@ -56,9 +58,10 @@ public class CursosData {
             final ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 p.setId(rs.getInt("id"));
-                p.setName(rs.getString("nombre"));
-                p.setSex(rs.getString("comentarios"));
-                p.setAge(rs.getInt("creditos"));
+                p.setNombre(rs.getString("nombre"));
+                p.setComentarios(rs.getString("comentarios"));
+                p.setClase(rs.getString("clase"));
+                p.setCreditos(rs.getInt("creditos"));
             }
         } catch (final Exception e) {
             System.out.println("Error " + e);
@@ -67,13 +70,14 @@ public class CursosData {
     }
 
     public void update(final Cursos d) {
-        final String sql = "UPDATE cursos SET " + "nombre=?, " + "comentarios=?, " + "creditos=? " + "WHERE id=?";
+        final String sql = "UPDATE cursos SET " + "nombre=?, " + "comentarios=?, "+"clase=? " + "creditos=? " + "WHERE id=?";
         int i = 0;
         int res = 0;
         try {
             final PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(++i, d.getNombre());
             ps.setString(++i, d.getComentarios());
+            ps.setClase(++i, d.getString());
             ps.setInt(++i, d.getCreditos());
             ps.setInt(++i, d.getId());
             res = ps.executeUpdate();// 0 no o 1 si commit
